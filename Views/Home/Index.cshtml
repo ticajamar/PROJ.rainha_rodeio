@@ -1,0 +1,261 @@
+﻿@{
+    ViewData["Title"] = "Início - Prefeitura de Cajamar";
+}
+<div ng-controller="homeController">
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container">
+            <h2 style="font-family: Montserrat; font-weight: 800; color: #000000 !important;" class="page-section-heading text-center text-uppercase text-secondary mb-0">Inscrição</h2>
+            <div class="divider-custom">
+            </div>
+            @*NOME*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Nome</strong></label>
+                    <input ng-model="Nome" type="text" name="nome" class="form-control" id="formNome">
+                </div>
+            </div>
+
+            @*ENDERECO*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Endereço </strong></label>
+                    <input ng-model="Endereco" type="text" name="endereco" class="form-control" id="formEndereco">
+                </div>
+            </div>
+
+            @*BAIRRO*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Bairro </strong></label>
+                    <input ng-model="Bairro" type="text" name="bairro" class="form-control" id="formBairro">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Cidade </strong></label>
+                    <input ng-model="Cidade" type="text" name="cidade" class="form-control" id="formCidade">
+                </div>
+            </div>
+
+            @*UF*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>UF </strong></label>
+                    <input ng-model="UF" type="text" name="uf" class="form-control" id="formUf">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>CEP </strong></label>
+                    <input ng-model="CEP" type="text" name="cep" class="form-control" id="formCep">
+                </div>
+            </div>
+
+            @*FONE*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Fone </strong></label>
+                    <input ng-model="Fone" type="text" name="fone" class="form-control" id="formFone">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Celular </strong></label>
+                    <input ng-model="Celular" type="text" name="celular" class="form-control" id="formCelular">
+                </div>
+            </div>
+
+            @*EMAIL*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>E-mail</strong></label>
+                    <input ng-model="Email" type="text" name="email" class="form-control" id="formEmail">
+                </div>
+            </div>
+
+            @*RG*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>R.G.</strong></label>
+                    <input ng-model="RG" type="text" name="rg" class="form-control" id="formRg">
+                </div>
+            </div>
+
+            @*DATA NASCIMENTO E IDADE*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Data de Nascimento </strong></label>
+                    <input ng-model="DataNascimento" type="date" name="dataNascimento" class="form-control" id="formDataNascimento">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Idade </strong></label>
+                    <input ng-model="Idade" type="number" name="idade" class="form-control" id="formIdade">
+                </div>
+            </div>
+            <br />
+
+            @*ESCOLARIDADE*@
+            <div class="row justify-content-center">
+                <h3 style="margin-top: 20px;"><strong>Escolaridade</strong></h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <select id="comboEscolaridade" class="form-control mb-2 mb-2" ng-model="comboEscolaridade">
+                        <option value="{{u.id}}" ng-repeat="u in listEscolaridade" ng-selected="u.Id == comboEscolaridade">{{u.nome}}</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            @*ALTURA E ETC*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Altura </strong></label>
+                    <input ng-model="Altura" type="number" name="altura" placeholder="CM" class="form-control" id="formAltura">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Peso </strong></label>
+                    <input ng-model="Peso" type="number" name="peso" placeholder="KG" class="form-control" id="formPeso">
+                </div>
+            </div>
+
+            @*OLHOS E PELE*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Olhos </strong></label>
+                    <select id="comboOlhos" class="form-control mb-2 mb-2" ng-model="comboOlhos">
+                        <option value="{{u.id}}" ng-repeat="u in listTipoCorOlho" ng-selected="u.Id == comboOlhos">{{u.nome}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Pele </strong></label>
+                    <select id="comboPele" class="form-control mb-2 mb-2" ng-model="comboPele">
+                        <option value="{{u.id}}" ng-repeat="u in listTipoCorPele" ng-selected="u.Id == comboPele">{{u.nome}}</option>
+                    </select>
+                </div>
+            </div>
+
+            @*MANEQUIN*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Manequim</strong></label>
+                    <input ng-model="Manequim" type="text" class="form-control" id="formManequim">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Nº calçado </strong></label>
+                    <input ng-model="Calcado" type="number" class="form-control" id="formCalcado">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Nº chapéu </strong></label>
+                    <input ng-model="Chapeu" type="number" class="form-control" id="formChapeu">
+                </div>
+            </div>
+            <br />
+            <br />
+
+            @*CABELO*@
+            <div class="row justify-content-center">
+                <div class="col">
+                    <h3 style="margin-top: 20px;"><strong>Cabelo</strong></h3>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <select id="comboTamanhoCabelo" class="form-control mb-2 mb-2" ng-model="comboTamanhoCabelo">
+                        <option value="{{u.id}}" ng-repeat="u in listTipoComprimentoCabelo" ng-selected="u.Id == comboTamanhoCabelo">{{u.nome}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="comboTipoCabelo" class="form-control mb-2 mb-2" ng-model="comboTipoCabelo">
+                        <option value="{{u.id}}" ng-repeat="u in listTipoCabelo" ng-selected="u.Id == comboTipoCabelo">{{u.nome}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="comboCorCabelo" class="form-control mb-2 mb-2" ng-model="comboCorCabelo">
+                        <option value="{{u.id}}" ng-repeat="u in listTipoCorCabelo" ng-selected="u.Id == comboCorCabelo">{{u.nome}}</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            @*MEDIDAS*@
+            <div class="row justify-content-center">
+                <h3 style="margin-top: 20px;"><strong>Medidas</strong></h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Busto</strong></label>
+                    <input ng-model="Busto" type="number" name="busto" placeholder="CM" class="form-control" id="formBusto">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Cintura </strong></label>
+                    <input ng-model="Cintura" type="number" name="cintura" placeholder="CM" class="form-control" id="formCintura">
+                </div>
+                <div class="col">
+                    <label style="color: #000000;" for="exampleInputEmail1"><strong>Quadril </strong></label>
+                    <input ng-model="Quadril" type="number" name="quadril" placeholder="CM" class="form-control" id="formQuadril">
+                </div>
+            </div>
+
+            @*FOTO*@
+            <div class="row justify-content-center">
+                <h3 style="margin-top: 40px;"><strong>Foto</strong></h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <button class="btn" style="background-color: transparent; border-color: transparent;" id="OpenImgUpload">
+                        <img id="img" style="height: 426px; width: 284px; border-radius: 2%;" src="assets/img/mock.png" />
+                    </button>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            @*TERMO*@
+            <div id="desk" class="show row justify-content-center">
+                <div class="col">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    Eu li e concordo com os <a id="termo">Termos de uso de imagem e voz.</a>
+                    <br />
+                    <br />
+                    <div style="text-align: center;">
+                        <button ng-click="salvar()" class="btn btn-success btn-lg" style="width: 75%;font-weight: 700;">Concluir Inscrição</button>
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="imgupload" style="display:none" />
+
+        </div>
+    </section>
+
+    @*SOBRE*@
+    <section style="background-color: #E6BB67;" class="page-section text-white mb-0" id="about">
+        <div class="container">
+            <h2 style="font-family: Montserrat; font-weight: 800;" class="page-section-heading text-center text-uppercase text-white">Sobre o Rodeio de Cajamar</h2>
+            <div class="divider-custom divider-light">
+            </div>
+            <div class="row">
+                <div class="col-lg-12 ms-auto">
+                    <p class="lead">
+                        A Festa do Peão de Cajamar foi criada em 1986 com estrutura simples e algumas apresentações de moda de viola. Com o passar dos anos, o rodeio tomou uma proporção maior na cidade, ganhando destaque nacional, e Cajamar passou a ser o município com uma das maiores Festas do Peão do país.
+                        <br />O Rodeio de Cajamar é realizado no Boiódromo, em Jordanésia. O local conta com boa localização e uma infraestrutura ampla, que garante segurança ao público. O Boiódromo de Cajamar está entre os melhores do Brasil, sendo uma referência no Estado de São Paulo.
+                        <br />O retorno da Festa do Peão de Cajamar em 2022 é dos mais esperados pelos amantes de rodeio. A arena do Boiódromo recebeu algumas modificações para oferecer maior conforto aos frequentadores e contará com diversas atrações, além da tradicional competição de rodeio profissional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*MODAL TERMO*@
+    <div class="modal" id="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <embed id="src" frameborder="0" width="100%" height="400px">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closemodal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts {
+    <script src="~/js/app/controllers/homeController.js"></script>
+    }

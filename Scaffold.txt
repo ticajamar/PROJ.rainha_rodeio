@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold "server=172.16.0.4;DataBase=AmberCute;Uid=ambercute;Pwd=#CXk8nsw@r;" Microsoft.EntityFrameworkCore.SqlServer --use-database-names --context-dir Data  -o Models -f -c AppDbContext
