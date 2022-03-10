@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace rainha_rodeio.DTO
+namespace rainha_rodeio.Models
 {
-    public class ModeloDTO
+    public class ModeloModel
     {
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
-        public string Bairro{ get; set; }
+        public string Bairro { get; set; }
         public string Cidade { get; set; }
         public int Cep { get; set; }
         public string UF { get; set; }

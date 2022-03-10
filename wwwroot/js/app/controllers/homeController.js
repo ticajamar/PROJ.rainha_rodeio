@@ -1,6 +1,6 @@
 ﻿var rodeioApp = angular.module('rodeioApp', ['ngAnimate', 'toastr']);
 
-rodeioApp.controller('homeController', function ($scope, $timeout, toastr) {
+rodeioApp.controller('homeController', function ($scope, $timeout, toastr, $compile) {
 
     $scope.listTipoCabelo = [];
     $scope.listTipoComprimentoCabelo = [];
@@ -8,6 +8,9 @@ rodeioApp.controller('homeController', function ($scope, $timeout, toastr) {
     $scope.listEscolaridade = [];
     $scope.listTipoCorPele = [];
 
+    $scope.disposeModalSuccess = function () {
+        $('#modalSuccess').modal('toggle');
+    };
 
     $scope.getTipoCabelo = function () {
         $.ajax({
@@ -99,202 +102,265 @@ rodeioApp.controller('homeController', function ($scope, $timeout, toastr) {
     }
     $scope.getTipoCorOlho();
 
-
+    
 
     $scope.salvar = function () {
 
-        var title = "Cadastro de Departamento";
-
-        if (this.comboEscolaridade == "" || this.comboEscolaridade == undefined) {
-            $('#comboEscolaridade').focus();
-            toastr.error("O campo ESCOLARIDADE é obrigatório.", "Inscrição");
-            return;
-        }
-        if (this.comboOlhos == "" || this.comboOlhos == undefined) {
-            $('#comboOlhos').focus();
-            toastr.error("O campo COR DOS OLHOS é obrigatório.", "Inscrição");
-            return;
-        }
-        if (this.comboPele == "" || this.comboPele == undefined) {
-            $('#comboPele').focus();
-            toastr.error("O campo COR DA PELE é obrigatório.", "Inscrição");
-            return;
-        }
-        if (this.comboTamanhoCabelo == "" || this.comboTamanhoCabelo == undefined) {
-            $('#comboTamanhoCabelo').focus();
-            toastr.error("O campo TAMANHO DO CABELO é obrigatório.", "Inscrição");
-            return;
-        }
-        if (this.comboTipoCabelo == "" || this.comboTipoCabelo == undefined) {
-            $('#comboTipoCabelo').focus();
-            toastr.error("O campo TIPO DO CABELO é obrigatório.", "Inscrição");
-            return;
-        }
-        if (this.comboCorCabelo == "" || this.comboCorCabelo == undefined) {
-            $('#comboCorCabelo').focus();
-            toastr.error("O campo COR DO CABELO é obrigatório.", "Inscrição");
-            return;
-        }
-
-
         if (this.Nome == "" || this.Nome == undefined) {
             $('#formNome').focus();
-            toastr.error("O campo NOME é obrigatório.", "Inscrição");
+            alertErro("NOME");
             return;
         }
         if (this.Endereco == "" || this.Endereco == undefined) {
             $('#formEndereco').focus();
-            toastr.error("O campo ENDEREÇO é obrigatório.", "Inscrição");
+            alertErro("ENDERECO");
             return;
         }
         if (this.Bairro == "" || this.Bairro == undefined) {
             $('#formBairro').focus();
-            toastr.error("O campo BAIRRO é obrigatório.", "Inscrição");
+            alertErro("BAIRRO");
             return;
         }
         if (this.Cidade == "" || this.Cidade == undefined) {
             $('#formCidade').focus();
-            toastr.error("O campo CIDADE é obrigatório.", "Inscrição");
+            alertErro("CIDADE");
             return;
         }
         if (this.UF == "" || this.UF == undefined) {
             $('#formUf').focus();
-            toastr.error("O campo UF é obrigatório.", "Inscrição");
+            alertErro("UF");
             return;
         }
         if (this.CEP == "" || this.CEP == undefined) {
             $('#formCep').focus();
-            toastr.error("O campo CEP é obrigatório.", "Inscrição");
+            alertErro("CEP");
             return;
         }
         if (this.Celular == "" || this.Celular == undefined) {
             $('#formCelular').focus();
-            toastr.error("O campo CELULAR é obrigatório.", "Inscrição");
+            alertErro("CELULAR");
+            return;
+        }
+        if (this.Fone == "" || this.Fone == undefined) {
+            $('#formCelular').focus();
+            alertErro("FONE");
             return;
         }
         if (this.Email == "" || this.Email == undefined) {
             $('#formEmail').focus();
-            toastr.error("O campo EMAIL é obrigatório.", "Inscrição");
+            alertErro("EMAIL");
             return;
         }
         if (this.RG == "" || this.RG == undefined) {
             $('#formRg').focus();
-            toastr.error("O campo RG é obrigatório.", "Inscrição");
+            alertErro("RG");
+            return;
+        }
+        if (this.CPF == "" || this.CPF == undefined) {
+            $('#formRg').focus();
+            alertErro("CPF");
             return;
         }
         if (this.DataNascimento == "" || this.DataNascimento == undefined) {
             $('#formDataNascimento').focus();
-            toastr.error("O campo DATA DE NASCIMENTO é obrigatório.", "Inscrição");
+            alertErro("DATA DE NASCIMENTO");
             return;
         }
         if (this.Idade == "" || this.Idade == undefined) {
             $('#formIdade').focus();
-            toastr.error("O campo IDADE é obrigatório.", "Inscrição");
+            alertErro("IDADE");
             return;
         }
+
+        if (this.comboEscolaridade == "" || this.comboEscolaridade == undefined) {
+            $('#comboEscolaridade').focus();
+            setInterval(ShowModalAlert, 500)
+            toastr.error("O campo ESCOLARIDADE é obrigatório.", "Inscrição");
+            return;
+        }
+
         if (this.Altura == "" || this.Altura == undefined) {
             $('#formAltura').focus();
-            toastr.error("O campo ALTURA é obrigatório.", "Inscrição");
+            alertErro("ALTURA");
             return;
         }
         if (this.Peso == "" || this.Peso == undefined) {
             $('#formPeso').focus();
-            toastr.error("O campo PESO é obrigatório.", "Inscrição");
+            alertErro("PESO");
             return;
         }
+
+        if (this.comboOlhos == "" || this.comboOlhos == undefined) {
+            $('#comboOlhos').focus();
+            setInterval(ShowModalAlert, 500)
+            alertErro("COR DOS OLHOS");
+            return;
+        }
+        if (this.comboPele == "" || this.comboPele == undefined) {
+            $('#comboPele').focus();
+            setInterval(ShowModalAlert, 500)
+            alertErro("COR DA PELE");
+            return;
+        }
+
         if (this.Manequim == "" || this.Manequim == undefined) {
             $('#formManequim').focus();
-            toastr.error("O campo MANEQUIM é obrigatório.", "Inscrição");
+            alertErro("MANEQUIM");
             return;
         }
         if (this.Calcado == "" || this.Calcado == undefined) {
             $('#formCalcado').focus();
-            toastr.error("O campo CALÇADO é obrigatório.", "Inscrição");
+            alertErro("CALÇADO");
             return;
         }
         if (this.Chapeu == "" || this.Chapeu == undefined) {
             $('#formChapeu').focus();
-            toastr.error("O campo CHAPÉU é obrigatório.", "Inscrição");
+            alertErro("CHAPÉU");
             return;
         }
+
+        if (this.comboTamanhoCabelo == "" || this.comboTamanhoCabelo == undefined) {
+            $('#comboTamanhoCabelo').focus();
+            setInterval(ShowModalAlert, 500)
+            alertErro("TAMANHO DO CABELO");
+            return;
+        }
+        if (this.comboTipoCabelo == "" || this.comboTipoCabelo == undefined) {
+            $('#comboTipoCabelo').focus();
+            setInterval(ShowModalAlert, 500)
+            alertErro("TIPO DO CABELO");
+            return;
+        }
+        if (this.comboCorCabelo == "" || this.comboCorCabelo == undefined) {
+            $('#comboCorCabelo').focus();
+            setInterval(ShowModalAlert, 500)
+            alertErro("COR DO CABELO");
+            return;
+        }
+
         if (this.Busto == "" || this.Busto == undefined) {
             $('#formBusto').focus();
-            toastr.error("O campo BUSTO é obrigatório.", "Inscrição");
+            alertErro("BUSTO");
             return;
         }
         if (this.Cintura == "" || this.Cintura == undefined) {
             $('#formCintura').focus();
-            toastr.error("O campo CINTURA é obrigatório.", "Inscrição");
+            alertErro("CINTURA");
             return;
         }
         if (this.Quadril == "" || this.Quadril == undefined) {
             $('#formQuadril').focus();
-            toastr.error("O campo QUADRIL é obrigatório.", "Inscrição");
+            alertErro("QUADRIL");
             return;
         }
 
+        if ($('#imgupload')[0].files.length === 0) {
+            $("#imgupload").focus();
+            alertErro("FOTO");
+        }
+
+
+        var cpfFormatado = this.CPF.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        var foneFormatado = this.Fone.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        var celularFormatado = this.Celular.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        var cepFormatado = this.CEP.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+
         var data = {
+
             Nome: this.Nome,
-            Rg: this.RG,
-            DataNascimento: this.DataNascimento,
-            Celular: this.Celular,
-            Fone: this.Fone,
             Endereco: this.Endereco,
             Bairro: this.Bairro,
-            Cep: this.CEP,
-            IdCidade: this.comboCidade,
-            Ativo: true,
+            Cidade: this.Cidade,
+            Cep: cepFormatado,
+            UF: this.UF,
+            Fone: foneFormatado,
+            Celular: celularFormatado,
+            Email: this.Email,
+            RG: this.RG,
+            CPF: cpfFormatado,
+            DataNascimento: this.DataNascimento,
+            Idade: this.Idade,
             IdEscolaridade: this.comboEscolaridade,
             Peso: this.Peso,
+            Altura: this.Altura,
             IdTipoCorOlho: this.comboOlhos,
-            IdTipoPele: this.comboPele,
+            IdTipocorPele: this.comboPele,
             Manequim: this.Manequim,
             NumeroCalcado: this.Calcado,
             NumeroChapeu: this.Chapeu,
-            MedidaBust: this.Busto,
+            IdTipoComprimentoCabelo: this.comboTamanhoCabelo,
+            IdTipoCabelo: this.comboTipoCabelo,
+            IdTipoCorCabelo: this.comboCorCabelo,
+            MedidaBusto: this.Busto,
             MedidaCintura: this.Cintura,
-            MedidaQuadril: this.Quadril
+            MedidaQuadril: this.Quadril,
         };
+
+        var fileUpload = $("#imgupload").get(0);
+        var files = fileUpload.files;
+        var formData = new FormData();
+        formData.append(files[0].name, files[0]);
+        formData.append('Dados', JSON.stringify(data));
 
         $.ajax({
             url: '/Home/Save',
             type: 'POST',
-            data: data,
+            contentType: false, // Not to set any content header  
+            processData: false, // Not to process data  
+            data: formData,
             success: function (result) {
-                
                 $scope.clear();
-                toastr.success(result.Mensagem, result.Titulo);
-                alert('FOI ESSA PORRA PODE DAR SELECT NA BASE!!!!!!');
-                //$('#modalDepartamento').modal('hide');
+
+                $scope.getTipoCabelo();
+                $scope.getTipoComprimentoCabelo();
+                $scope.getTipoCorCabelo();
+                $scope.getTipoCorPele();
+                $scope.getTipoCorOlho();
+                debugger
+                $.ajax({
+                    url: '/Home/GetLastId',
+                    type: 'POST',
+                    success: function (result2) {
+                        jNotify.success('Inscrição concluída!', 'A sua inscrição foi confirmada, seu número é: '+result2[0].id+'! Foi enviado um email com'
+                            + 'o comprovante de inscrição para o email informado no formulário'
+                            + ', caso não tenha recebido, entre em contato pelo Whatsapp.', {
+                                delay: 10000
+                        })
+                    }
+                })  
             },
             error: function (xhr, status) {
-
+                alert('Houve um erro na sua inscrição.');
             }
         })
     };
 
-
-
     $scope.clear = function () {
-        this.Nome,
-        this.RG,
-        this.DataNascimento,
-        this.Celular,
-        this.Fone,
-        this.Endereco,
-        this.Bairro,
-        this.CEP,
-        this.comboCidade,
-        this.comboEscolaridade,
-        this.Peso,
-        this.comboOlhos,
-        this.comboPele,
-        this.Manequim,
-        this.Calcado,
-        this.Chapeu,
-        this.Busto,
-        this.Cintura,
-        this.Quadril
+        this.Nome = "";
+        this.RG = "";
+        this.DataNascimento = "";
+        this.Celular = "";
+        this.Fone = "";
+        this.Endereco = "";
+        this.Bairro = "";
+        this.CEP = "";
+        this.Cidade = "";
+        this.Email = "";
+        this.CPF = "";
+        this.Idade = "";
+        this.UF = "";
+        this.Altura = "";
+        this.comboCidade = "";
+        this.comboEscolaridade = "";
+        this.Peso = "";
+        this.comboOlhos = "";
+        this.comboPele = "";
+        this.Manequim = "";
+        this.Calcado = "";
+        this.Chapeu = "";
+        this.Busto = "";
+        this.Cintura = "";
+        this.Quadril = "";      
         $('#formNome').focus();
     };
 });

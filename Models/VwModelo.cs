@@ -45,6 +45,5 @@ namespace rainha_rodeio.Models
         public decimal? MedidaCintura { get; set; }
         public decimal? MedidaQuadril { get; set; }
         public string CaminhoFoto { get; set; }
-        public bool Ativo { get; set; }
     }
 }

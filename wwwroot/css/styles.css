@@ -12,6 +12,11 @@
  */
 
 
+.removeBgModal{
+    background-color: transparent !important;
+    border-width: 0px !important;
+}
+
 .cstm-navLink {
   font-family: Montserrat;
   font-weight: 800;
@@ -36,10 +41,10 @@ label{
 
 .label-radio{
   margin: 0px;
-  font-size: 14px;;
+  font-size: 14px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 992px) {
   .show{
     display: none;
   }
@@ -60,8 +65,9 @@ label{
   border-radius: 0px !important;
 }
 
-.form-control:focus{
-  box-shadow: 0 0 0 0.25rem rgb(201 201 201 / 68%) !important;
+    .form-control:focus {
+        box-shadow: #004bf59e !important;
+    }
 }
 
 .form-select{
@@ -70,9 +76,9 @@ label{
   border-radius: 0px !important;
 }
 
-.form-select:focus{
-  box-shadow: 0 0 0 0.25rem rgb(201 201 201 / 68%) !important;
-}
+    .form-select:focus {
+        box-shadow: #004bf59e !important;
+    }
 
 :root {
   --bs-blue: #0d6efd;
