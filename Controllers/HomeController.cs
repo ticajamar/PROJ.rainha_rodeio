@@ -93,7 +93,7 @@ namespace rainha_rodeio.Controllers
                     if (result == true)
                     {
                         return Json(JsonResultBL.Sucesso(title, "O CPF já está inscrito no concurso."));
-                    }
+                    } 
                     else
                     {
 
