@@ -72,7 +72,8 @@ namespace rainha_rodeio.Controllers
 
                 ModeloDTO modelDTO = Newtonsoft.Json.JsonConvert.DeserializeObject<ModeloDTO>(x);
 #if DEBUG
-                modelDTO.CaminhoFoto = @"C:\Users\leofs\source\repos\rainha_rodeio\wwwroot\fotos\";
+                //modelDTO.CaminhoFoto = @"C:\Users\leofs\source\repos\rainha_rodeio\wwwroot\fotos\";
+                modelDTO.CaminhoFoto = @"C:\Users\12476839906\Source\Repos\PROJ.rainha_rodeio\wwwroot\fotos\";
 #else
                 modelDTO.CaminhoFoto = @"C:\inetpub\wwwroot\RainhaRodeio\wwwroot\fotos\";
 #endif
@@ -107,7 +108,6 @@ namespace rainha_rodeio.Controllers
                         query.AppendLine("<br/>Endereço: "+modelDTO.Endereco+", "+modelDTO.Bairro+", "+modelDTO.Cidade+"/"+modelDTO.UF+", "+modelDTO.Cep+".");
                         query.AppendLine("<br/>Fone: "+modelDTO.Fone);
                         query.AppendLine("<br/>Celular: " + modelDTO.Celular);
-                        query.AppendLine("<br/>Email: " + modelDTO.Email);
                         query.AppendLine("<br/>RG: " + modelDTO.RG);
                         query.AppendLine("<br/>CPF: " + modelDTO.CPF);
                         query.AppendLine("<br/>Data de nascimento: " + modelDTO.DataNascimento);
